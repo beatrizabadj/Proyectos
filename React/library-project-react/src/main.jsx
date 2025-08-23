@@ -4,11 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import { UserProviderWrapper } from './context/user.context.jsx'
+import { BooksProviderWrapper } from './context/books.context.jsx'
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <UserProviderWrapper>
-      <App />
+      <BooksProviderWrapper>
+          <App />
+      </BooksProviderWrapper>
     </UserProviderWrapper>
   </BrowserRouter>,
+      
 )
