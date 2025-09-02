@@ -6,7 +6,7 @@ function BookCard(props) {
 
     const {darkMode} = useContext(DarkModeContext);
   return book.id ? (
-    <div className={darkMode ? "book-card-dark" : "book-card"}>
+    <div className={darkMode ? "book-card dark" : "book-card"}>
         <ul style={{listStyle: 'none'}}>
           <li onClick={()=>selectedBook(book)}>
               <h1>Title: {book.volumeInfo.title}</h1>

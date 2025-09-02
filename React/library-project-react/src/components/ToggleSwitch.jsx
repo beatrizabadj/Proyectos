@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { DarkModeContext } from '../context/theme.context';
-
+import "./ToggleSwitch.scss";
 function ToggleSwitch() {
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     
@@ -11,7 +11,7 @@ function ToggleSwitch() {
             checked={darkMode}
             onChange={toggleDarkMode}
         />
-        <span className='slider round'></span>
+        <span className='slider round'>Dark mode</span>
     </label>
   )
 }

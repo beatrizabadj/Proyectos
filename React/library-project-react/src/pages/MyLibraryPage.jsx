@@ -4,14 +4,16 @@ import { Navigate } from 'react-router-dom';
 import BooksList from '../components/BooksList';
 import { BooksContext } from '../context/books.context';
 import ToggleSwitch from '../components/ToggleSwitch';
+import "./MyLibraryPage.scss";
+
 function MyLibraryPage() {
     const {user, setUser} = useContext(UserContext)
     // if(!user.isLoggedIn) return <Navigate to ={"/login"} />
    
     // const {fetchBooks}=useContext(BooksContext);
    return (
-    <main>
-     <ToggleSwitch/>
+    <main className="my-library-page">
+        <ToggleSwitch/>
         <h1>Mi biblioteca</h1>
         <BooksList>
            

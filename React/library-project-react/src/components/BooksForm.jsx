@@ -1,5 +1,6 @@
 import React, { use, useContext, useState } from 'react'
 import {BooksContext} from '../context/books.context';
+import './BooksForm.scss';
 
 function BooksForm() {
 
@@ -16,7 +17,7 @@ function BooksForm() {
         setBooks(booksArray);
     }
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='books-form' onSubmit={handleSubmit}>
         <fieldset>
             <label htmlFor="search-book">Buscar libro:</label>
             <input type="text" id="search-book" placeholder='Don quijote' onChange={handleSearchBook} />

@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import {BooksContext} from '../context/books.context'
 import BookCard from './BookCard';
 import BooksForm from './BooksForm';
-
+import "./BooksList.scss";
 function BooksList(props) {
 
     const { books, setBooks, fetchBooks } = useContext(BooksContext);
@@ -29,9 +29,9 @@ function BooksList(props) {
     return (
     <div>
       <BooksForm getBooks={getBooks}></BooksForm>
-      <ul>
+      <section className='books-list'>
         {bookCards}
-      </ul>
+      </section>
     </div>
   )
 }
