@@ -6,30 +6,33 @@
     align-items: start;
     position: absolute;
 
-    & .sidebar-menu {
-        padding-top: 1rem;
+    .sidebar-menu {
+        padding-top: 1.5rem;
+        width: 10rem;
+        box-sizing: border-box;
 
-        & ul {
+        ul {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             list-style: none;
             margin: 0;
             padding: 0;
             border-radius: 10px;
             background-color: white;
+            height: 100vh;
 
-            & li {
-                padding: .5rem;
+            li {
+                padding-top: 1.5rem;
             }
         }
     }
 
     // dark theme
-    & .dark ul{
+    .dark ul{
         background-color: #000000 !important;
 
-        & li a {
+        li a {
             color: white;
         }
     }
