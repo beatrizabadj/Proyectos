@@ -10,7 +10,7 @@ function LoginPage(props) {
     
     const handleLogin = async(username, password) => {
         const response = await login(username, password);
-        response === true ? navigate('/my-library') : navigate('/error');
+        response === true ? navigate('/search-books') : navigate('/error');
     }
   return (
     <div>

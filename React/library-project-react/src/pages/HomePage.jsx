@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <section id="home-page">Home Page
         <h1 className='welcome'>Welcome</h1>
-        <Link to="/my-library">Go to My Library</Link>
+        <Link to="/search-books">Go to My Library</Link>
     </section>
   )
 }
