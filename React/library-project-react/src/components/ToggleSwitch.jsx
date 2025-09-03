@@ -1,18 +1,25 @@
 import React, { useContext } from 'react'
 import { DarkModeContext } from '../context/theme.context';
+import {motion} from 'framer-motion';
 import "./ToggleSwitch.scss";
+
 function ToggleSwitch() {
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     
     return (
-    <label className="switch">
-        <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={toggleDarkMode}
+    <button className={darkMode ? "switch-btn dark" : "switch-btn"}
+        role="switch"
+        onClick={toggleDarkMode}
+        aria-checked={darkMode}
+        style={{justifyContent: darkMode ? 'flex-end' : 'flex-start'}}
+    >
+        <motion.span
+            layout
+            className='thumb'
+            animate={{ x: darkMode ? 8 : -5 }}
+            transition={{type:"spring"}}
         />
-        <span className='slider round'>Dark mode</span>
-    </label>
+    </button>
   )
 }
 
