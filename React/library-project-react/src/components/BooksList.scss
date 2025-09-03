@@ -2,19 +2,17 @@
     display:grid;
     grid-template-columns: repeat(auto-fit,15.5rem);
     gap: 10px;
+    justify-content:center;
+
+    & .book-card {
+        border-radius: 10px;
+        font-size: 0.4rem;
+
+        & ul {
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+    }
 }
 
-.book-card {
-    border-radius: 10px;
-    font-size: 0.4rem;
-}
 
-.book-card img {
-    // width: 100%;
-    height: auto;
-}
-
-.book-card ul {
-    padding: 1.5rem;
-    box-sizing: border-box;
-}
