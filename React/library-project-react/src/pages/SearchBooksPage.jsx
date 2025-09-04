@@ -6,6 +6,8 @@ import { BooksContext } from '../context/books.context.jsx';
 import ToggleSwitch from '../components/ToggleSwitch.jsx';
 import "./MyLibraryPage.scss";
 import SidebarMenu from '../components/SidebarMenu.jsx';
+import "./SearchBooksPage.scss";
+
 function SearchBooksPage() {
     const {user, setUser} = useContext(UserContext)
     // if(!user.isLoggedIn) return <Navigate to ={"/login"} />

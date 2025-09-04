@@ -1,9 +1,9 @@
+.toggle-switch-container {
+    display:flex;
+    flex-direction: row-reverse;
+}
+
 .switch-btn {
-    position:absolute;
-    right: 15px;
-    display: flex;
-    width: 60px;
-    height: 35px;
     background-color: rgb(158, 1, 1);
 
     .thumb {
