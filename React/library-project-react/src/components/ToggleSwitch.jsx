@@ -7,19 +7,21 @@ function ToggleSwitch() {
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     
     return (
-    <button className={darkMode ? "switch-btn dark" : "switch-btn"}
-        role="switch"
-        onClick={toggleDarkMode}
-        aria-checked={darkMode}
-        style={{justifyContent: darkMode ? 'flex-end' : 'flex-start'}}
-    >
-        <motion.span
-            layout
-            className='thumb'
-            animate={{ x: darkMode ? 8 : -5 }}
-            transition={{type:"spring"}}
-        />
-    </button>
+        <div className='toggle-switch-container'>
+            <button className={darkMode ? "switch-btn dark" : "switch-btn"}
+                role="switch"
+                onClick={toggleDarkMode}
+                aria-checked={darkMode}
+                style={{justifyContent: darkMode ? 'flex-end' : 'flex-start'}}
+                >
+                <motion.span
+                    layout
+                    className='thumb'
+                    animate={{ x: darkMode ? 8 : -5 }}
+                    transition={{type:"spring"}}
+                    />
+            </button>
+        </div>
   )
 }
 
