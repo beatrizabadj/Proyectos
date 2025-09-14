@@ -27,7 +27,17 @@ class LibraryModel {
         }
     }
     
-    async getBooks() {
+    async findById(id) {
+        try {
+            await this.connect();
+            return await this.collection.findOne({ _id: new ObjectId(String(id)) });
+        } catch (e) {
+            console.error("Error finding book by ID:", e);
+            throw e;
+        }
+    }
+    
+    async listAll() {
         try {
             await this.connect();
             return await this.collection.find({}).toArray();
@@ -37,17 +47,17 @@ class LibraryModel {
         }
     }
 
-    async addBook(newBook) {
+    async create(newBook) {
         try {
             await this.connect();
             return await this.collection.insertOne(newBook);
         } catch (e) {
-            console.error("Error fetching books:", e);
+            console.error("Error inserting books:", e);
             throw e;
         }
     }
 
-    async updateBook(bookId, updatedBook) {
+    async update(bookId, updatedBook) {
         try {
             await this.connect();
             return await this.collection.updateOne(
@@ -60,7 +70,7 @@ class LibraryModel {
         }
     }
 
-    async deleteBook(bookId) {
+    async delete(bookId) {
         try {
            await this.connect();
             return await this.collection.deleteOne({ _id: new ObjectId(String(bookId)) });
