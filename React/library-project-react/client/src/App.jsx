@@ -5,11 +5,11 @@ import './App.css'
 import { Route, Routes } from 'react-router'
 import { DarkModeProviderWrapper } from './context/theme.context.jsx'
 const HomePage = lazy(() => import('./pages/HomePage.jsx'))
-const MyLibraryPage = lazy(() => import('./pages/SearchBooksPage.jsx'))
+const SearchBooksPage = lazy(() => import('./pages/SearchBooksPage.jsx'))
+const MyLibraryPage = lazy(() => import('./pages/MyLibraryPage.jsx'))
 const ErrorPage = lazy(() => import('./pages/ErrorPage.jsx'))
 const LoginPage = lazy(() => import('./pages/LoginPage.jsx'))
 import SidebarMenu from './components/SidebarMenu.jsx'
-import SearchBooksPage from './pages/SearchBooksPage.jsx'
 function App() {
 
   return (
@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element = {<HomePage />} />
           <Route path="/search-books" element = {<SearchBooksPage />} />
+          <Route path="/my-library" element = {<MyLibraryPage />} />
           <Route path="/error" element = {<ErrorPage />} />
           {/* <Route path="/login" element = {<LoginPage />} /> */}
         </Routes>

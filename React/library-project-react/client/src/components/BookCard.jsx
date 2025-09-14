@@ -1,23 +1,56 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import "./BookCard.scss";
-import { DarkModeContext } from '../context/theme.context';
-function BookCard(props) {
-    const {book, selectedBook} = props;
+import { DarkModeContext } from "../context/theme.context";
 
-    const {darkMode} = useContext(DarkModeContext);
-  return book.id ? (
+function BookCard({ book, selectedBook, onAdd, onDelete, onUpdate }) {
+  const { darkMode } = useContext(DarkModeContext);
+
+  // normalize data
+  const normalizedBook = book.volumeInfo
+    ? {
+        id: book.id,
+        title: book.volumeInfo.title,
+        author: book.volumeInfo.authors?.join(", "),
+        year: book.volumeInfo.publishedDate,
+        image: book.volumeInfo.imageLinks?.thumbnail,
+      }
+    : {
+        id: book._id,
+        title: book.title,
+        author: book.author,
+        year: book.year,
+        image: book.image,
+      };
+
+  return (
     <div className={darkMode ? "book-card dark" : "book-card"}>
-        <ul style={{listStyle: 'none'}}>
-          <li onClick={()=>selectedBook(book)}>
-              <h1>{book.volumeInfo.title}</h1>
-              <h2>{book.volumeInfo.authors}</h2>
-              <img src={book.volumeInfo.imageLinks?.thumbnail} alt={book.volumeInfo.title} />
-          </li>
-      </ul>
+      <div onClick={() => selectedBook && selectedBook(normalizedBook)}>
+        <h1>{normalizedBook.title}</h1>
+        <h2>{normalizedBook.author}</h2>
+        <h3>{normalizedBook.year}</h3>
+        <img
+          src={
+            normalizedBook.image &&
+            (normalizedBook.image.startsWith("http") || normalizedBook.image.startsWith("data:image"))
+              ? normalizedBook.image
+              : "/placeholder.png" // imagen por defecto
+          }
+          alt={normalizedBook.title}
+        />
+      </div>
+
+      {onAdd && (
+        <button onClick={() => onAdd(normalizedBook)}>➕ Add to my library</button>
+      )}
+
+      {onDelete && (
+        <button onClick={() => onDelete(normalizedBook.id || normalizedBook._id)}>🗑️ Delete</button>
+      )}
+      {onUpdate && (
+        <button onClick={() => onUpdate(normalizedBook.id || normalizedBook._id)}>✏️ Edit</button>
+      )}
     </div>
-  ) : (
-    <p>Cargando...</p>
-  )
+  );
 }
 
-export default BookCard
+export default BookCard;
