@@ -24,9 +24,7 @@ function BooksList(props) {
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(bookData)
             });
-            const data = await res.json();
-            // update with new book
-            setBooks(book=>[...book, data]);
+            
         } catch(e) {
             console.error("Error adding book", e);
         }
