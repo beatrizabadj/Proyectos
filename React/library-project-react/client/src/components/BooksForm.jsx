@@ -5,7 +5,7 @@ import './BooksForm.scss';
 function BooksForm() {
 
     const [searchBook, setSearchBook] = useState('');
-    const {fetchBooks, books, setBooks} =useBooks();
+    const {fetchApiBooks, setSearchedBooks} =useBooks();
 
     const handleSearchBook=(e)=>{
         setSearchBook(e.target.value); 
@@ -13,8 +13,8 @@ function BooksForm() {
 
     const handleSubmit=async(e)=> {
         e.preventDefault();
-        const booksArray = await fetchBooks(searchBook, 10);
-        setBooks(booksArray);
+        const booksArray = await fetchApiBooks(searchBook, 10);
+        setSearchedBooks(booksArray);
     }
   return (
     <form className='books-form' onSubmit={handleSubmit}>

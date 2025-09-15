@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./BookCard.scss";
 import { DarkModeContext } from "../context/theme.context";
 
-function BookCard({ book, selectedBook, onAdd, onDelete, onUpdate }) {
+function BookCard({ book, selectedBook, onAdd, toRead, onDelete, onUpdate }) {
   const { darkMode } = useContext(DarkModeContext);
 
   // normalize data
@@ -33,14 +33,18 @@ function BookCard({ book, selectedBook, onAdd, onDelete, onUpdate }) {
             normalizedBook.image &&
             (normalizedBook.image.startsWith("http") || normalizedBook.image.startsWith("data:image"))
               ? normalizedBook.image
-              : "/placeholder.png" // imagen por defecto
+              : "/placeholder.png"
           }
           alt={normalizedBook.title}
         />
       </div>
 
       {onAdd && (
-        <button onClick={() => onAdd(normalizedBook)}>➕ Add to my library</button>
+        <button onClick={() => onAdd(normalizedBook)}>✅ Mark as read</button>
+      )}
+
+      {toRead && (
+        <button onClick={() => toRead(normalizedBook)}>⌛️ To read</button>
       )}
 
       {onDelete && (
