@@ -58,7 +58,7 @@ function SidebarMenu(props) {
                             <Link to="/my-library">my library</Link>
                         </li>
                         <li>
-                            <Link to="/search-books">search books</Link>
+                            <Link to="/to-read">to read</Link>
                         </li>
                     </ul>
                 </motion.section>
