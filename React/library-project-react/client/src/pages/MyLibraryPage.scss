@@ -1,3 +1,5 @@
 .my-library-page {
-    display:block;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-content: flex-start;
 }

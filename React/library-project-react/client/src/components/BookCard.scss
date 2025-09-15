@@ -1,10 +1,10 @@
 
 .book-card {
     background: rgb(95, 16, 82);
-
-}
-
-.book-card.dark {
-    background: rgb(0, 0, 0);
+    
+    // dark mode
+    &.dark{
+        background: rgb(0, 0, 0);
+    }
 }
 
