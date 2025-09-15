@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import {UserContext} from '../context/user.context.jsx';
 import { Navigate } from 'react-router-dom';
 import BooksList from '../components/BooksList.jsx';
-import { BooksContext } from '../context/books.context.jsx';
 import ToggleSwitch from '../components/ToggleSwitch.jsx';
 import "./MyLibraryPage.scss";
 import SidebarMenu from '../components/SidebarMenu.jsx';

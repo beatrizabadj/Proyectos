@@ -1,19 +1,19 @@
 import { useContext, useEffect, useMemo } from 'react'
-import {BooksContext} from '../context/books.context'
 import BookCard from './BookCard';
 import BooksForm from './BooksForm';
 import "./BooksList.scss";
+import { useBooks } from '../context/books.context';
 
 function BooksList(props) {
 
-    const { books, setBooks, fetchBooks } = useContext(BooksContext);
+    const { books, setBooks, fetchApiBooks } = useBooks();
 
     useEffect(() => {
       getBooks('harry potter');
     },[])
 
     const getBooks = async(query)=>{
-      const booksArray = await fetchBooks(query);
+      const booksArray = await fetchApiBooks(query);
       setBooks(Array.isArray(booksArray) ? booksArray : []);
     }
 
@@ -24,6 +24,8 @@ function BooksList(props) {
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(bookData)
             });
+
+            const data = await res.json()
             
         } catch(e) {
             console.error("Error adding book", e);

@@ -1,11 +1,11 @@
 import React, { use, useContext, useState } from 'react'
-import {BooksContext} from '../context/books.context';
+import {useBooks} from '../context/books.context';
 import './BooksForm.scss';
 
 function BooksForm() {
 
     const [searchBook, setSearchBook] = useState('');
-    const {fetchBooks, books, setBooks} =useContext(BooksContext);
+    const {fetchBooks, books, setBooks} =useBooks();
 
     const handleSearchBook=(e)=>{
         setSearchBook(e.target.value); 
