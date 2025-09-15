@@ -4,18 +4,9 @@ import BooksForm from './BooksForm';
 import "./BooksList.scss";
 import { useBooks } from '../context/books.context';
 
-function BooksList(props) {
+function BooksList({type= "search", props}) {
 
-    const { books, setBooks, fetchApiBooks } = useBooks();
-
-    useEffect(() => {
-      getBooks('harry potter');
-    },[])
-
-    const getBooks = async(query)=>{
-      const booksArray = await fetchApiBooks(query);
-      setBooks(Array.isArray(booksArray) ? booksArray : []);
-    }
+    const { searchedBooks, setSearchedBooks,libraryBooks, pendingBooks, fetchApiBooks, handleToReadBook, handleDeleteBook, handleUpdateBook } = useBooks();
 
      const handleAddBook = async(bookData) => {
         try {
@@ -25,29 +16,55 @@ function BooksList(props) {
                 body: JSON.stringify(bookData)
             });
 
-            const data = await res.json()
+            await res.json()
             
         } catch(e) {
             console.error("Error adding book", e);
         }
     }
 
-    const bookCards = useMemo(() => books.map((book, index)=>{
+    const searchedBookCards = useMemo(() => searchedBooks.map((book, index)=>{
       return(
         <BookCard
           key={book.id ? book.id : index}
           book={book}
-          selectedBook={props.selectedBook}
+          // selectedBook={props.selectedBook}
+          onAdd={handleAddBook}
+          toRead={handleToReadBook}
+        ></BookCard>
+      );
+    }), [searchedBooks, handleAddBook, handleToReadBook]);
+    
+    const libraryBookCards = useMemo(() => libraryBooks.map((book, index)=>{
+      return(
+        <BookCard
+          key={book.id ? book.id : index}
+          book={book}
+          // selectedBook={props.selectedBook
+          onDelete={handleDeleteBook}
+          toUpdate={handleUpdateBook}
+        ></BookCard>
+      );
+    }), [libraryBooks, handleDeleteBook, handleUpdateBook]);
+
+    const pendingBookCards = useMemo(() => pendingBooks.map((book, index)=>{
+      return(
+        <BookCard
+          key={book.id ? book.id : index}
+          book={book}
+          // selectedBook={props.selectedBook
+          onDelete={handleDeleteBook}
           onAdd={handleAddBook}
         ></BookCard>
       );
-    }), [books]);
+    }), [pendingBooks, handleDeleteBook, handleAddBook]);
 
     return (
     <div>
-      <BooksForm getBooks={getBooks}></BooksForm>
+      
+
       <section className='books-list'>
-        {bookCards}
+        {type==="search" ? searchedBookCards : type==="library" ? libraryBookCards : pendingBookCards}
       </section>
     </div>
   )
