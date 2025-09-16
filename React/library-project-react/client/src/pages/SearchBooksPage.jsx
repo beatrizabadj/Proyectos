@@ -25,10 +25,10 @@ function SearchBooksPage() {
     // const {fetchBooks}=useContext(BooksContext);
    return (
     <main className="search-books-page">
+        <ToggleSwitch/>
         <h1>Buscar libros</h1>
         <BooksForm getBooks={getBooks}></BooksForm>
         <SidebarMenu/>
-        <ToggleSwitch/>
         <BooksList type="search"/>
     </main>
    )
