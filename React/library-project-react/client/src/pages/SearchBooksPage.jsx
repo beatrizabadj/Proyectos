@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import {UserContext} from '../context/user.context.jsx';
 import { Navigate } from 'react-router-dom';
-import BooksForm from '../components/BooksForm.jsx';
+import BooksForm from '../components/SearchBooksForm.jsx';
 import BooksList from '../components/BooksList.jsx';
 import ToggleSwitch from '../components/ToggleSwitch.jsx';
 import "./MyLibraryPage.scss";

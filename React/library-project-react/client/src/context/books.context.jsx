@@ -127,11 +127,28 @@ function BooksProviderWrapper(props) {
     // mark to read
     const handleToReadBook = async(book) => {
       try {
+
+        const bookToAdd = {
+            title: book.title || "",
+            author: book.author || "",
+            year: book.year || "",
+            image: book.image || "",
+            id: book.id || Date.now().toString()
+        };
         // add book to pending
-        setPendingBooks((p)=> [...p, book]);
+        setPendingBooks((p)=> [...p, bookToAdd]);
       } catch(e) {
         console.error("Error updating book", e);
       }
+    }
+
+    // delete pending book (not from database)
+    const handleDeletePendingBook = (id) => {
+        setPendingBooks(prevBooks => prevBooks.filter(book => book.id !== id));
+    }
+
+    const handleDeleteAllPendingBooks = () => {
+        setPendingBooks([]);
     }
 
   return (
@@ -145,6 +162,8 @@ function BooksProviderWrapper(props) {
         handleDeleteAllBooks,
         handleUpdateBook,
         handleToReadBook,
+        handleDeletePendingBook,
+        handleDeleteAllPendingBooks,
         pendingBooks,
         setPendingBooks,
         searchedBooks,

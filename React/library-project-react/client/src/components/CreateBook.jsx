@@ -1,20 +1,58 @@
-import React from 'react'
+import { useState } from 'react';
 import { useBooks } from '../context/books.context';
-function CreateBook() {
+import "./CreateBook.scss"
+function CreateBook({type= "my-library"}) {
     const {
             libraryBooks,
-            pendingBook,
-            fetchBooks,
+            pendingBooks,
             handleAddBook,
-            handleDeleteBook,
+            handleToReadBook,
             handleDeleteAllBooks,
-            handleUpdateBook,
+            handleDeleteAllPendingBooks,
             newBook,
             setNewBook
          } = useBooks();
+
+         const [showForm, setShowForm] = useState(false);
+        //  const [showDeleteButton, setShowDeleteButton] = useState(false);
+
+        //  show form
+        const showBookForm = ()=> {
+            setShowForm(!showForm);
+        }
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            if (type === "my-library"){
+                handleAddBook();
+            } else {
+                handleToReadBook(newBook);
+                setNewBook({
+                    title: "",
+                    author: "",
+                    year: "",
+                    image: ""
+                });
+            }
+        }
+
   return (
-    <section>
-            <form className='add-book-form' onSubmit={(e)=>{e.preventDefault(); handleAddBook();}}>
+    <div className="manage-book-container">
+        {/* buttons  */}
+        <div>
+            <button onClick={showBookForm}>+</button>
+
+            {libraryBooks.length > 0 && type === "my-library" && (
+                <button onClick={handleDeleteAllBooks}> Delete all</button>         
+            )}
+
+            {pendingBooks.length > 0 && type === "to-read" && (
+                <button onClick={handleDeleteAllPendingBooks}> Delete all</button>     
+            )}
+        </div>
+
+        <section className={showForm ? 'visible' : 'hidden'}>
+            <form className='add-book-form' onSubmit={handleSubmit}>
                 <fieldset>
                     <label htmlFor="title-book">Título: </label>
                     <input type="text" id="title-book" placeholder='Don quijote' value={newBook.title} onChange={(e)=>setNewBook({...newBook, title: e.target.value})} />
@@ -31,6 +69,7 @@ function CreateBook() {
                 <button>Añadir libro</button>
             </form>
         </section>
+    </div>
   )
 }
 

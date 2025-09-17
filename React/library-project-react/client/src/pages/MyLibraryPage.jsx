@@ -29,10 +29,9 @@ function MyLibraryPage() {
       <main className='my-library-page'>
         <SidebarMenu/>
         <ToggleSwitch/>
-        <CreateBook/>
         <h2>My library ({libraryBooks.length} libros)</h2>
+        <CreateBook/>
         <BooksList type="library"/>
-        
     </main>
   )
 }

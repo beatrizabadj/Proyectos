@@ -6,20 +6,20 @@ function BookCard({ book, selectedBook, onAdd, toRead, onDelete, onUpdate }) {
   const { darkMode } = useContext(DarkModeContext);
 
   // normalize data
-  const normalizedBook = book.volumeInfo
+   const normalizedBook = book?.volumeInfo
     ? {
         id: book.id,
-        title: book.volumeInfo.title,
-        author: book.volumeInfo.authors?.join(", "),
-        year: book.volumeInfo.publishedDate,
-        image: book.volumeInfo.imageLinks?.thumbnail,
+        title: book.volumeInfo.title || "",
+        author: book.volumeInfo.authors?.join(", ") || "",
+        year: book.volumeInfo.publishedDate || "",
+        image: book.volumeInfo.imageLinks?.thumbnail || "",
       }
     : {
-        id: book._id,
-        title: book.title,
-        author: book.author,
-        year: book.year,
-        image: book.image,
+        id: book?._id || book?.id || `pending-${Date.now()}`,
+        title: book?.title || "",
+        author: book?.author || "",
+        year: book?.year || "",
+        image: book?.image || "",
       };
 
   return (

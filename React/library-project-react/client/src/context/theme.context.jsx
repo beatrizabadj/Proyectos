@@ -9,8 +9,6 @@ function DarkModeProviderWrapper(props) {
         setDarkMode(!darkMode);
     };
 
-    
-
   return (
     <DarkModeContext.Provider value={{darkMode, setDarkMode, toggleDarkMode}}>
         {props.children}
